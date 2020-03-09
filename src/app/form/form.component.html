@@ -1,0 +1,259 @@
+<div #appDirective  class="pt-perspective" [formGroup] = "contactForm">
+    <div class="page pt-page-1">
+        <h1 class="text-center">Basic Details</h1>
+            <div class="form-group">
+                    <div>
+                      <label for="f1">First name</label>
+                       <input type="text" id="f1" class="form-control" formControlName="firstname" data-title="Enter First name">
+                    </div>
+                    <div>
+                          <label for="f2">Last name</label>
+                          <input type="text" id="f2" class="form-control" formControlName="lastname">
+                  </div>
+                  </div>
+                  <label for="f3">Date of Birth</label>
+                  <input type="date" id="f3" class="form-control" formControlName="dob">
+                  <label for="f2">Employee ID</label>
+                  <input type="text" id="f2" class="form-control" formControlName="employeeId">
+                  <label for="f2">Tax ID</label>
+                  <input type="text" id="f2" class="form-control" formControlName="taxId">
+                  <button type="button" (click)= "transition()">Next</button>
+                 
+    </div>
+    <div class="page pt-page-2">
+    <h1 class="text-center">More Details</h1>
+    <label for="f2">Reason for Contacting</label>
+    <div class="form-group" formGroupName="bestReasonForContact">
+        <select class="form-control" formControlName="contactOption"  (change)= "selectContactReason()">
+            <option value="Myself">Myself</option>
+            <option value="Spouse">Spouse/Partner</option>
+            <option value="Child">Child/Dependent</option>
+        </select>
+        <div *ngIf="subReasonForContactBool">
+            <label for="f2">Sub Reason to Contact</label>
+            <select class="form-control" formControlName="reason">
+                <option [value]="reason" *ngFor="let reason of subReasonForContact">{{reason}}</option>
+            </select> 
+        </div> 
+    </div>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class="pt-page-3">
+        <h1 class="text-center">Leave Details</h1>
+    <label for="f2">Will you or have you missed time from work</label>
+    <select class="form-control" formControlName="missedTimeFromWork">
+            <option [value]="reason" *ngFor="let reason of missedTimeFromWorkVal">{{reason}}</option>
+    </select>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class='pt-page-4'>
+        <h1 class="text-center">Claim Details</h1>
+    <div class="form-group" formGroupName="claimantDetails">
+        <label for="f2">First Name</label>
+        <input type="text" id="f2" class="form-control" formControlName="firstname">
+        <label for="f2">Last Name</label>
+        <input type="text" id="f2" class="form-control" formControlName="lastname">
+        <label for="f2">EmpID</label>
+        <input type="text" id="f2" class="form-control" formControlName="EmpID">
+        <label for="f2">DOB</label>
+        <input type="date" id="f2" class="form-control" formControlName="DOB">
+        <label for="f2">SSN</label>
+        <input type="text" id="f2" class="form-control" formControlName="SSN">
+        <label for="f2">Preferred Language</label>
+        <input type="text" id="f2" class="form-control" formControlName="preferredLang">
+        <label for="f2">Email</label>
+        <input type="text" id="f2" class="form-control" formControlName="email">
+        <label for="f2">Primary Phone</label>
+        <input type="text" id="f2" class="form-control" formControlName="primaryPhone">
+        <label for="f2">Marital Status</label>
+        <select class="form-control" formControlName="maritalStatus">
+                <option value="Married">Married</option>
+                <option value="Unmarried">Unmarried</option>
+            </select>
+        <label for="f2">Register For Tax Alerts</label>
+        <select class="form-control" formControlName="registerForTaxAlerts">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+    </div>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class="pt-page-5">
+        <h1 class="text-center">Address Details</h1>
+    <div class="form-group" formGroupName="addressDetails">
+        <label for="f2">Address Type</label>
+        <select class="form-control" formControlName="addressType">
+                <option [value]="reason" *ngFor="let reason of addressTypeVal">{{reason}}</option>
+        </select>
+        <div class="form-group" formGroupName="moreDetails">
+            <label for="f2">Address 1</label>
+            <input type="text" id="f2" class="form-control" formControlName="addr1">
+            <label for="f2">Address 2 </label>
+            <input type="text" id="f2" class="form-control" formControlName="addr2">
+            <label for="f2">City</label>
+            <input type="text" id="f2" class="form-control" formControlName="city">
+            <label for="f2">Country</label>
+            <input type="text" id="f2" class="form-control" formControlName="country">
+            <label for="f2">State</label>
+            <select class="form-control" formControlName="state">
+                    <option [value]="reason" *ngFor="let reason of USStates">{{reason}}</option>
+            </select>
+            <label for="f2">ZipCode</label>
+            <input type="text" id="f2" class="form-control" formControlName="zip">
+        </div>
+    </div>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class="pt-page-6">
+        <h1 class="text-center">Job Details</h1>
+    <label for="f2">Job Title</label>
+    <input type="text" id="f2" class="form-control" formControlName="jobTitle">
+    <label for="f2">Description of Work</label>
+    <select class="form-control" formControlName="descriptionOfWork">
+            <option [value]="reason" *ngFor="let reason of workDescription">{{reason}}</option>
+    </select>
+    <label for="f2">Employment Schedule</label>
+    <select class="form-control" formControlName="employmentSchedule" (change) = "a()"> 
+            <option [value]="reason" *ngFor="let reason of employmentScheduleVal">{{reason}}</option>
+    </select>
+    <label for="f2">Do you work for other employee?</label>
+    <select class="form-control" formControlName="workForOtherEmployeeStatus">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    <div *ngIf="contactForm.controls['workForOtherEmployeeStatus']['value'] == 'Yes'" class="form-group" formGroupName="workForOtherEmployee">
+        <label for="f2">Employer Name</label>
+        <input type="text" id="f2" class="form-control" formControlName="employerName">
+        <label for="f2">Contact Name</label>
+        <input type="text" id="f2" class="form-control" formControlName="contactName">
+        <label for="f2">Contact Number</label>
+        <input type="text" id="f2" class="form-control" formControlName="contactNumber">
+        <label for="f2">Job Title</label>
+        <input type="text" id="f2" class="form-control" formControlName="jobTitle">
+    </div>
+    <label for="f2">Work Live In Same State?</label>
+    <select class="form-control" formControlName="workLiveInSameState">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+    </select>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class="pt-page-7">
+        <h1 class="text-center">Accident Details</h1>
+    <label for="f2">Is Accident Work Related?</label>
+    <select class="form-control" formControlName="accidentWorkRelated">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+    </select>
+    <div *ngIf="contactForm.controls['workForOtherEmployeeStatus']['value'] == 'Yes'">
+        <label for="f2">Did you filled the claim?</label>
+        <select class="form-control" formControlName="claimfilled">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+        </select>
+    </div>
+    <label for="f2">Last Date Worked</label>
+    <input type="text" id="f2" class="form-control" formControlName="lastDateWorked">
+    <label for="f2">Leave Start Date</label>
+    <input type="date" id="f2" class="form-control" formControlName="leaveStartDate">
+    <label for="f2">Return To Work Date Status </label>
+    <select class="form-control" formControlName="returnToWorkDateStatus">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+    </select>
+    <label for="f2">Return to Work Date</label>
+    <select class="form-control" formControlName="returnToWorkDate"> 
+            <option [value]="reason" *ngFor="let reason of returnToWOrkDateVal">{{reason}}</option>
+    </select>
+    <!-- <label for="f2">Tax ID</label> 
+    <input type="text" id="f2" class="form-control" formControlName="lastDayWorked"> -->
+    <label for="f2">Resident State on Disability Date</label>
+    <select class="form-control" formControlName="residentStateOnDisabilityDate">
+            <option [value]="reason" *ngFor="let reason of USStates">{{reason}}</option>
+    </select>
+    <button type="button" (click)= "transition()">Next</button>
+</div>
+<div class="pt-page-8">
+        <h1 class="text-center">Hospital Details</h1>
+    <label for="f2">Did you Visit Hospital</label>
+    <select class="form-control" formControlName="visitToHospital">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+    </select>
+    <div *ngIf="contactForm.controls['visitToHospital']['value'] == 'Yes'" class="form-group" formGroupName="visitToHospitalDetails">
+            <label for="f2">Admission Type</label>
+            <select class="form-control" formControlName="admissionType"> 
+                    <option [value]="reason" *ngFor="let reason of admissionTypeVal">{{reason}}</option>
+            </select>
+            <label for="f2">Admission Date</label>
+            <input type="date" id="f2" class="form-control" formControlName="admissionDate">
+            <label for="f2">Hospital Name</label>
+            <input type="text" id="f2" class="form-control" formControlName="hospitalName">
+            <label for="f2">City</label>
+            <input type="text" id="f2" class="form-control" formControlName="city">
+            <label for="f2">State</label>
+            <select class="form-control" formControlName="state">
+                    <option [value]="reason" *ngFor="let reason of USStates">{{reason}}</option>
+            </select>
+            <label for="f2">Telephone</label>
+            <input type="text" id="f2" class="form-control" formControlName="tel">
+            <label for="f2">Discharge Date</label>
+            <input type="date" id="f2" class="form-control" formControlName="dischargeDate">
+            <button type="button" *ngIf="contactForm.controls['visitToHospital']['value'] == 'Yes'" (click)= "transition()">Next</button>
+        </div>
+</div>
+         <div *ngIf="contactForm.controls['visitToHospital']['value'] == 'Yes'" class="pt-page-9">
+                <h1 class="text-center">Physician Details</h1>
+            <div  class="form-group" formGroupName="physicianDetails">
+                    <label for="f2">First Name</label>
+                    <input type="text" id="f2" class="form-control" formControlName="firstname">
+                    <label for="f2">Last Name</label>
+                    <input type="text" id="f2" class="form-control" formControlName="lastname">
+                    <label for="f2">Organization</label>
+                    <input type="text" id="f2" class="form-control" formControlName="organization">
+                    <label for="f2">State</label>
+                    <select class="form-control" formControlName="state">
+                            <option [value]="reason" *ngFor="let reason of USStates">{{reason}}</option>
+                    </select>
+                    <label for="f2">Contact</label>
+                    <input type="text" id="f2" class="form-control" formControlName="contact">
+                    <label for="f2">Fax</label>
+                    <input type="text" id="f2" class="form-control" formControlName="fax">
+                    <label for="f2">Speciality</label>
+                    <select class="form-control" formControlName="speciality">
+                            <option [value]="reason" *ngFor="let reason of specialityVal">{{reason}}</option>
+                    </select> 
+                    <label for="f2">First Visit</label>
+                    <input type="date" id="f2" class="form-control" formControlName="firstVisit">
+                    <label for="f2">Next Visit</label>
+                    <input type="date" id="f2" class="form-control" formControlName="nextVisit">
+                    <label for="f2">Is another physician involved?</label>
+                    <select class="form-control" formControlName="isAnotherPhysicianInvolved">
+                           <option value="">--Select--</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                    </select>
+                    <div *ngIf="contactForm.controls['physicianDetails']['controls']['isAnotherPhysicianInvolved']['value'] == 'Yes'" class="form-group" formGroupName="anotherPhysicanData">
+                    <label for="f2">First Name</label>
+                    <input type="text" id="f2" class="form-control" formControlName="firstname">
+                    <label for="f2">Last Name</label>
+                    <input type="text" id="f2" class="form-control" formControlName="lastname">
+                    <label for="f2">Organization</label>
+                    <input type="text" id="f2" class="form-control" formControlName="organization">
+                    <label for="f2">State</label>
+                    <select class="form-control" formControlName="state">
+                            <option [value]="reason" *ngFor="let reason of USStates">{{reason}}</option>
+                    </select>
+                    <label for="f2">Contact</label>
+                    <input type="text" id="f2" class="form-control" formControlName="contact">
+                    <label for="f2">Fax</label>
+                    <input type="text" id="f2" class="form-control" formControlName="fax">
+                    <label for="f2">Speciality</label>
+                    <select class="form-control" formControlName="speciality">
+                            <option [value]="reason" *ngFor="let reason of specialityVal">{{reason}}</option>
+                    </select> 
+                    </div>
+            </div>
+            <button type="submit" (click)="submitForm()">Submit</button>
+    </div>
+</div>
